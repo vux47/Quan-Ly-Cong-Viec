@@ -10,6 +10,7 @@ Repo đã có cấu hình Dev Container cho NodeJS, TypeScript, Git, MySQL Clien
 2. Chọn mở trong Dev Container.
 3. Chạy `npm install` nếu VS Code chưa tự cài dependencies.
 4. Dùng `npm run start:dev` để chạy ứng dụng.
+5. Dùng `npm run build` rồi `npm run start` nếu muốn chạy bản đã biên dịch.
 
 
 ## Cấu trúc Layer Architecture
