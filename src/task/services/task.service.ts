@@ -1,8 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateTaskDto } from '../dto/create-task.dto';
 import { TaskRepository } from '../repositories/task.repository';
-import { AssignTaskDto } from '../dto/assign-task.dto';
-import { UpdateTaskStatusDto } from '../dto/update-task-status.dto';
+import { UpdateTaskDto } from '../dto/update-task.dto';
 import { UserService } from '../../user/services/user.service';
 
 @Injectable()
@@ -17,24 +16,35 @@ export class TaskService {
   }
 
   create(createTaskDto: CreateTaskDto) {
-    return this.taskRepository.create(createTaskDto);
-  }
-
-  assignTask(id: number, assignDto: AssignTaskDto) {
-    const user = this.userService.findById(assignDto.userId);
-    if (!user) {
-      throw new NotFoundException('User not found');
+    if (createTaskDto.assignedTo !== undefined && createTaskDto.assignedTo !== null) {
+      const user = this.userService.findById(createTaskDto.assignedTo);
+      if (!user) {
+        throw new NotFoundException('User not found');
+      }
     }
-    const task = this.taskRepository.assignToUser(id, assignDto.userId);
-    if (!task) throw new NotFoundException('Task not found');
-    return task;
-  }
-
-  updateStatus(id: number, updateDto: UpdateTaskStatusDto) {
-    return this.taskRepository.updateStatus(id, updateDto.completed);
+    return this.taskRepository.create(createTaskDto);
   }
 
   findById(id: number) {
     return this.taskRepository.findById(id);
+  }
+
+  update(id: number, updateTaskDto: UpdateTaskDto) {
+    if (updateTaskDto.assignedTo !== undefined && updateTaskDto.assignedTo !== null) {
+      const user = this.userService.findById(updateTaskDto.assignedTo);
+      if (!user) {
+        throw new NotFoundException('User not found');
+      }
+    }
+
+    const task = this.taskRepository.update(id, updateTaskDto);
+    if (!task) throw new NotFoundException('Task not found');
+    return task;
+  }
+
+  delete(id: number) {
+    const deleted = this.taskRepository.delete(id);
+    if (!deleted) throw new NotFoundException('Task not found');
+    return { message: 'Task deleted successfully' };
   }
 }

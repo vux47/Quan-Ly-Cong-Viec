@@ -2,8 +2,8 @@ export class TaskEntity {
   id!: number;
   title!: string;
   description?: string;
-  completed!: boolean;
-  userId?: number;
+  status!: string;
+  assignedTo?: number | null;
   createdAt!: Date;
   updatedAt!: Date;
 }
