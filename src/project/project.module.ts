@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { ProjectController } from './controllers/project.controller';
-import { ProjectService } from './controllers/entities/services/project.service';
+import { ProjectService } from './services/project.service';
 
 @Module({
   controllers: [ProjectController],

@@ -7,8 +7,9 @@ import {
   Patch,
   Post,
 } from '@nestjs/common';
-import { CreateProjectDto } from './entities/services/dto/create-project.dto';
-import { ProjectService } from './entities/services/project.service';
+import { CreateProjectDto } from '../dto/create-project.dto';
+import { UpdateProjectDto } from '../dto/update-project.dto';
+import { ProjectService } from '../services/project.service';
 
 @Controller('projects')
 export class ProjectController {
@@ -32,7 +33,7 @@ export class ProjectController {
   @Patch(':id')
   update(
     @Param('id') id: string,
-    @Body() updateProjectDto: Partial<CreateProjectDto>,
+    @Body() updateProjectDto: UpdateProjectDto,
   ) {
     return this.projectService.update(Number(id), updateProjectDto);
   }

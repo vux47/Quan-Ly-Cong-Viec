@@ -1,6 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { Project } from '../project.entity';
-import { CreateProjectDto } from './dto/create-project.dto';
+import { Project } from '../entities/project.entity';
+import { CreateProjectDto } from '../dto/create-project.dto';
+import { UpdateProjectDto } from '../dto/update-project.dto';
 
 @Injectable()
 export class ProjectService {
@@ -32,7 +33,7 @@ export class ProjectService {
     return project;
   }
 
-  update(id: number, updateProjectDto: Partial<CreateProjectDto>): Project {
+  update(id: number, updateProjectDto: UpdateProjectDto): Project {
     const project = this.findOne(id);
     Object.assign(project, updateProjectDto);
     project.updatedAt = new Date();
