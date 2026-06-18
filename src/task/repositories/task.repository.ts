@@ -24,4 +24,24 @@ export class TaskRepository {
     this.tasks.push(task);
     return task;
   }
+
+  findById(id: number): TaskEntity | undefined {
+    return this.tasks.find((t) => t.id === id);
+  }
+
+  assignToUser(id: number, userId: number): TaskEntity | undefined {
+    const task = this.findById(id);
+    if (!task) return undefined;
+    task.userId = userId;
+    task.updatedAt = new Date();
+    return task;
+  }
+
+  updateStatus(id: number, completed: boolean): TaskEntity | undefined {
+    const task = this.findById(id);
+    if (!task) return undefined;
+    task.completed = completed;
+    task.updatedAt = new Date();
+    return task;
+  }
 }

@@ -22,4 +22,8 @@ export class UserRepository {
     this.users.push(user);
     return user;
   }
+
+  findById(id: number): UserEntity | undefined {
+    return this.users.find((u) => u.id === id);
+  }
 }

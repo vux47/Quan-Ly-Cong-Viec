@@ -13,4 +13,8 @@ export class UserService {
   create(createUserDto: CreateUserDto) {
     return this.userRepository.create(createUserDto);
   }
+
+  findById(id: number) {
+    return this.userRepository.findById(id);
+  }
 }
