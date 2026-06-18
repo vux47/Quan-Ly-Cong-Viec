@@ -7,8 +7,8 @@ import {
   Patch,
   Post,
 } from '@nestjs/common';
-import { CreateProjectDto } from './entities/services/dto/create-pj.dto';
-import { ProjectService } from './entities/services/pj.service';
+import { CreateProjectDto } from './entities/services/dto/create-project.dto';
+import { ProjectService } from './entities/services/project.service';
 
 @Controller('projects')
 export class ProjectController {
