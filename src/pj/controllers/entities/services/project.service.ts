@@ -1,13 +1,8 @@
-export class NotFoundException extends Error {
-  constructor(message: string) {
-    super(message);
-    this.name = 'NotFoundException';
-  }
-}
-
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { Project } from '../project.entity';
 import { CreateProjectDto } from './dto/create-project.dto';
 
+@Injectable()
 export class ProjectService {
   private projects: Project[] = [];
   private idCounter = 1;
@@ -20,7 +15,7 @@ export class ProjectService {
     newProject.ownerId = createProjectDto.ownerId;
     newProject.createdAt = new Date();
     newProject.updatedAt = new Date();
-    
+
     this.projects.push(newProject);
     return newProject;
   }
@@ -30,7 +25,7 @@ export class ProjectService {
   }
 
   findOne(id: number): Project {
-    const project = this.projects.find(p => p.id === id);
+    const project = this.projects.find((p) => p.id === id);
     if (!project) {
       throw new NotFoundException(`Không tìm thấy dự án với ID ${id}`);
     }
@@ -45,7 +40,7 @@ export class ProjectService {
   }
 
   remove(id: number): { message: string } {
-    const index = this.projects.findIndex(p => p.id === id);
+    const index = this.projects.findIndex((p) => p.id === id);
     if (index === -1) {
       throw new NotFoundException(`Không tìm thấy dự án với ID ${id}`);
     }
