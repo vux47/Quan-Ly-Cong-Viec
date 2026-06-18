@@ -25,3 +25,30 @@ Repo đã có cấu hình Dev Container cho NodeJS, TypeScript, Git, MySQL Clien
 - `src/user/repositories`
 - `src/user/entities`
 - `src/user/dto`
+
+## Task Module
+
+Chức năng:
+
+- Create Task
+- Read Task
+- Update Task
+- Delete Task
+- Assign Task cho thành viên
+- Update Status: `To Do`, `Doing`, `Done`
+
+API:
+
+- `POST /tasks`
+- `GET /tasks`
+- `GET /tasks/:id`
+- `PATCH /tasks/:id`
+- `DELETE /tasks/:id`
+
+Mô tả ngắn:
+
+- `POST /tasks` dùng để tạo công việc mới.
+- `GET /tasks` dùng để lấy danh sách công việc.
+- `GET /tasks/:id` dùng để xem chi tiết một công việc.
+- `PATCH /tasks/:id` dùng để cập nhật tiêu đề, mô tả, trạng thái và người được giao.
+- `DELETE /tasks/:id` dùng để xóa công việc.
