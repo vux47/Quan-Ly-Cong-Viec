@@ -10,20 +10,12 @@ export class UserRepository {
     return this.users;
   }
 
-  create(createUserDto: CreateUserDto): UserEntity {
-    const user: UserEntity = {
-      id: this.users.length + 1,
-      fullName: createUserDto.fullName,
-      email: createUserDto.email,
-      createdAt: new Date(),
-      updatedAt: new Date(),
-    };
-
-    this.users.push(user);
-    return user;
+  findByUsername(username: string): UserEntity | undefined {
+    return this.users.find(user => user.username === username);
   }
 
-  findById(id: number): UserEntity | undefined {
-    return this.users.find((u) => u.id === id);
+  create(user: UserEntity): UserEntity {
+    this.users.push(user);
+    return user;
   }
 }

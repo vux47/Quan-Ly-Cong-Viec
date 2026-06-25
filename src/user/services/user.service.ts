@@ -1,20 +1,51 @@
 import { Injectable } from '@nestjs/common';
-import { CreateUserDto } from '../dto/create-user.dto';
-import { UserRepository } from '../repositories/user.repository';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { UserEntity } from '../entities/user.entity';
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class UserService {
-  constructor(private readonly userRepository: UserRepository) {}
+  constructor(
+    @InjectRepository(UserEntity)
+    private readonly userRepo: Repository<UserEntity>,
+  ) {}
 
   findAll() {
-    return this.userRepository.findAll();
+    return this.userRepo.find();
   }
-
-  create(createUserDto: CreateUserDto) {
-    return this.userRepository.create(createUserDto);
-  }
-
+findByUsername(username: string) {
+  return this.userRepo.findOne({ where: { username } });
+}
   findById(id: number) {
-    return this.userRepository.findById(id);
+    return this.userRepo.findOne({ where: { id } });
+  }
+
+  async create(data: { username: string; password: string }) {
+    const hashedPassword = await bcrypt.hash(data.password, 10);
+
+    const user = this.userRepo.create({
+      username: data.username,
+      password: hashedPassword,
+    });
+
+    return await this.userRepo.save(user);
+  }
+
+  async login(username: string, password: string) {
+    const user = await this.userRepo.findOne({ where: { username } });
+
+    if (!user) return null;
+
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) return null;
+
+    return {
+      accessToken: 'dummy-jwt-token-123456',
+      user: {
+        id: user.id,
+        username: user.username,
+      },
+    };
   }
 }

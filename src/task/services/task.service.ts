@@ -6,11 +6,10 @@ import { UserService } from '../../user/services/user.service';
 
 @Injectable()
 export class TaskService {
-  constructor(
-    private readonly taskRepository: TaskRepository,
-    private readonly userService: UserService,
-  ) {}
-
+constructor(
+  private readonly taskRepository: TaskRepository,
+  private readonly userService: UserService,
+) {}
   findAll() {
     return this.taskRepository.findAll();
   }
