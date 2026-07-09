@@ -20,6 +20,11 @@ export class UserController {
     return this.userService.findAll();
   }
 
+  @Get('students')
+  findStudents() {
+    return this.userService.findStudents();
+  }
+
   @Post()
   create(@Body() body: any) {
     return this.userService.create(body);

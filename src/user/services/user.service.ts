@@ -14,9 +14,21 @@ export class UserService {
   findAll() {
     return this.userRepo.find();
   }
-findByUsername(username: string) {
-  return this.userRepo.findOne({ where: { username } });
-}
+
+  async findStudents() {
+    return [
+      {
+        id: 24100383,
+        name: 'Vũ Đức Vượng',
+        status: 'Active',
+      },
+    ];
+  }
+
+  findByUsername(username: string) {
+    return this.userRepo.findOne({ where: { username } });
+  }
+
   findById(id: number) {
     return this.userRepo.findOne({ where: { id } });
   }

@@ -52,3 +52,6 @@ Mô tả ngắn:
 - `GET /tasks/:id` dùng để xem chi tiết một công việc.
 - `PATCH /tasks/:id` dùng để cập nhật tiêu đề, mô tả, trạng thái và người được giao.
 - `DELETE /tasks/:id` dùng để xóa công việc.
+
+
+//cd react_client && PORT=3001 npm start
