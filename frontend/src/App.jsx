@@ -1,4 +1,5 @@
 import TaskList from "./pages/TaskList";
+import CreateTask from "./pages/CreateTask";
 
 
 function App(){
@@ -6,7 +7,15 @@ function App(){
 
   return (
 
-    <TaskList />
+    <>
+
+      <CreateTask />
+
+
+      <TaskList />
+
+
+    </>
 
   );
 
