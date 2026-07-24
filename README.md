@@ -1,4 +1,5 @@
 agy
+npm run dev
 # Quản Lý Công Việc
 
 ## Cấu trúc Project (Chốt)
