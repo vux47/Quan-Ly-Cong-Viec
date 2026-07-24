@@ -69,4 +69,38 @@ remove(id:number){
 }
 
 
+
+// Đổi trạng thái công việc
+updateStatus(
+    id:number,
+    status:string
+){
+
+    return this.taskRepository.update(
+        id,
+        {
+            status
+        }
+    );
+
+}
+
+
+
+// Đổi mức ưu tiên
+updatePriority(
+    id:number,
+    priority:string
+){
+
+    return this.taskRepository.update(
+        id,
+        {
+            priority
+        }
+    );
+
+}
+
+
 }

@@ -1,5 +1,15 @@
 import { Controller } from '@nestjs/common';
-import { Get, Post, Body, Param, Put, Delete } from '@nestjs/common';
+
+import { 
+    Get, 
+    Post, 
+    Body, 
+    Param, 
+    Put, 
+    Delete,
+    Patch
+} from '@nestjs/common';
+
 
 import { TasksService } from './tasks.service';
 
@@ -72,6 +82,38 @@ remove(
 
     return this.tasksService.remove(
         Number(id)
+    );
+
+}
+
+
+
+// Đánh dấu hoàn thành / đổi trạng thái
+@Patch(':id/status')
+updateStatus(
+    @Param('id') id:string,
+    @Body() body:{status:string}
+){
+
+    return this.tasksService.updateStatus(
+        Number(id),
+        body.status
+    );
+
+}
+
+
+
+// Đổi mức ưu tiên
+@Patch(':id/priority')
+updatePriority(
+    @Param('id') id:string,
+    @Body() body:{priority:string}
+){
+
+    return this.tasksService.updatePriority(
+        Number(id),
+        body.priority
     );
 
 }
