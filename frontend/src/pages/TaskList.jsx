@@ -2,11 +2,13 @@ import { useEffect, useState } from "react";
 
 import taskService from "../services/taskService";
 
+import TaskCard from "../components/TaskCard";
+
 
 function TaskList(){
 
 
-    const [tasks,setTasks] = useState([]);
+    const [tasks, setTasks] = useState([]);
 
 
 
@@ -24,9 +26,12 @@ function TaskList(){
 
             const response = await taskService.getAll();
 
-    console.log("DATA FROM API:", response.data);
 
-    setTasks(response.data);
+            console.log("DATA FROM API:", response.data);
+
+
+            setTasks(response.data);
+
 
         }
         catch(error){
@@ -43,61 +48,27 @@ function TaskList(){
 
         <div className="container mt-4">
 
+
             <h2>
                 Danh sách công việc
             </h2>
 
 
+
             {
                 tasks.map((task)=>(
 
-                    <div 
-                    className="card mt-3"
-                    key={task.id}
-                    >
+                    <TaskCard
 
-                        <div className="card-body">
+                        key={task.id}
 
+                        task={task}
 
-                            <h5>
-                                {task.title}
-                            </h5>
-
-
-                            <p>
-                                {task.description}
-                            </p>
-
-
-                            <p>
-                                Trạng thái:
-                                {" "}
-                                {task.status}
-                            </p>
-
-
-                            <p>
-                                Ưu tiên:
-                                {" "}
-                                {task.priority}
-                            </p>
-
-
-                            <p>
-                                Deadline:
-                                {" "}
-                                {task.deadline}
-                            </p>
-
-
-                        </div>
-
-
-                    </div>
-
+                    />
 
                 ))
             }
+
 
 
         </div>

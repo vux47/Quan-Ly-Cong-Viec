@@ -1,5 +1,6 @@
 agy
-npm run dev
+npm run dev //front
+npm run start:dev //back
 # Quản Lý Công Việc
 
 ## Cấu trúc Project (Chốt)
