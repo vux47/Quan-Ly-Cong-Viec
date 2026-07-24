@@ -8,7 +8,7 @@ import TaskCard from "../components/TaskCard";
 function TaskList(){
 
 
-    const [tasks, setTasks] = useState([]);
+    const [tasks,setTasks] = useState([]);
 
 
 
@@ -20,18 +20,15 @@ function TaskList(){
 
 
 
-    const loadTasks = async ()=>{
+    const loadTasks = async()=>{
 
         try{
 
             const response = await taskService.getAll();
 
-
-            console.log("DATA FROM API:", response.data);
-
+            console.log("DATA FROM API:",response.data);
 
             setTasks(response.data);
-
 
         }
         catch(error){
@@ -54,8 +51,8 @@ function TaskList(){
             </h2>
 
 
-
             {
+
                 tasks.map((task)=>(
 
                     <TaskCard
@@ -67,8 +64,8 @@ function TaskList(){
                     />
 
                 ))
-            }
 
+            }
 
 
         </div>

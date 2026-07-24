@@ -1,7 +1,12 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 
 function TaskCard({ task }) {
+
+
+    const navigate = useNavigate();
+
 
 
     return (
@@ -17,9 +22,11 @@ function TaskCard({ task }) {
                 </h5>
 
 
+
                 <p className="card-text">
                     {task.description}
                 </p>
+
 
 
                 <p>
@@ -31,6 +38,7 @@ function TaskCard({ task }) {
                 </p>
 
 
+
                 <p>
                     <strong>Ưu tiên:</strong>
                     {" "}
@@ -40,11 +48,32 @@ function TaskCard({ task }) {
                 </p>
 
 
+
                 <p>
                     <strong>Deadline:</strong>
                     {" "}
-                    {new Date(task.deadline).toLocaleDateString()}
+                    {
+                        task.deadline
+                        ?
+                        new Date(task.deadline).toLocaleDateString()
+                        :
+                        "Chưa có"
+                    }
                 </p>
+
+
+
+                <button
+
+                    className="btn btn-warning"
+
+                    onClick={()=>navigate(`/edit/${task.id}`)}
+
+                >
+
+                    Sửa
+
+                </button>
 
 
             </div>
