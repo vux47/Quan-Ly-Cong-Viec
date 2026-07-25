@@ -1,4 +1,5 @@
 import 'reflect-metadata';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 

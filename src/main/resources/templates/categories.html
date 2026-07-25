@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Categories</title>
+</head>
+<body>
+    <h1>Categories</h1>
+    <form action="/categories" method="post">
+        <input type="text" name="name" placeholder="Category name" required>
+        <button type="submit">Add Category</button>
+    </form>
+
+    <ul>
+        <li th:each="category : ${categories}" th:text="${category.name}"></li>
+    </ul>
+</body>
+</html>
