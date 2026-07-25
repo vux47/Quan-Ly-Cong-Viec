@@ -1,54 +1,73 @@
-# Quản-Lý-Công-Việc
+agy
+npm run dev
+# Quản Lý Công Việc
 
-## Dev Container
+## Cấu trúc Project (Chốt)
 
-Repo đã có cấu hình Dev Container cho NodeJS, TypeScript, Git, MySQL Client, GitHub Copilot và NestJS CLI.
+```text
+Quan-Ly-Cong-Viec/
+│
+├── backend/                  # Backend NestJS
+│   ├── src/
+│   │   ├── auth/             # Module xác thực
+│   │   ├── users/            # Module người dùng
+│   │   ├── categories/       # Module danh mục
+│   │   ├── tasks/            # Module công việc
+│   │   ├── common/           # Filter, Guard, Interceptor chung
+│   │   └── config/           # Cấu hình Database, JWT
+│   │
+│   ├── test/
+│   ├── .env
+│   ├── .env.example
+│   ├── package.json
+│   ├── nest-cli.json
+│   └── tsconfig.json
+│
+├── frontend/                 # Frontend React + React Bootstrap
+│   ├── public/
+│   ├── src/
+│   │   ├── api/              # Axios & API endpoints
+│   │   ├── assets/           # Media & icons
+│   │   ├── components/       # UI Components
+│   │   ├── hooks/            # Custom Hooks
+│   │   ├── layouts/          # Layouts
+│   │   ├── pages/            # Views / Pages
+│   │   ├── routes/           # Routing configuration
+│   │   ├── services/         # Business & API Services
+│   │   ├── styles/           # CSS / Styles
+│   │   ├── utils/            # Helper & Constants
+│   │   ├── App.jsx
+│   │   └── index.js
+│   │
+│   └── package.json
+│
+├── database/                 # Cơ sở dữ liệu
+│   ├── schema.sql            # Script tạo bảng
+│   ├── seed.sql              # Dữ liệu mẫu
+│   └── README.md             # Hướng dẫn CSDL
+│
+├── docs/                     # Tài liệu thiết kế & Báo cáo
+│   ├── uml/
+│   ├── api/
+│   └── report/
+│
+├── .gitignore
+├── LICENSE
+└── README.md
+```
 
-### Cách dùng
+## Hướng dẫn khởi chạy
 
-1. Mở repo bằng VS Code.
-2. Chọn mở trong Dev Container.
-3. Chạy `npm install` nếu VS Code chưa tự cài dependencies.
-4. Dùng `npm run start:dev` để chạy ứng dụng.
-5. Dùng `npm run build` rồi `npm run start` nếu muốn chạy bản đã biên dịch.
+### 1. Backend (NestJS)
+```bash
+cd backend
+npm install
+npm run start:dev
+```
 
-
-## Cấu trúc Layer Architecture
-
-- `src/task/controllers`
-- `src/task/services`
-- `src/task/repositories`
-- `src/task/entities`
-- `src/task/dto`
-- `src/user/controllers`
-- `src/user/services`
-- `src/user/repositories`
-- `src/user/entities`
-- `src/user/dto`
-
-## Task Module
-
-Chức năng:
-
-- Create Task
-- Read Task
-- Update Task
-- Delete Task
-- Assign Task cho thành viên
-- Update Status: `To Do`, `Doing`, `Done`
-
-API:
-
-- `POST /tasks`
-- `GET /tasks`
-- `GET /tasks/:id`
-- `PATCH /tasks/:id`
-- `DELETE /tasks/:id`
-
-Mô tả ngắn:
-
-- `POST /tasks` dùng để tạo công việc mới.
-- `GET /tasks` dùng để lấy danh sách công việc.
-- `GET /tasks/:id` dùng để xem chi tiết một công việc.
-- `PATCH /tasks/:id` dùng để cập nhật tiêu đề, mô tả, trạng thái và người được giao.
-- `DELETE /tasks/:id` dùng để xóa công việc.
+### 2. Frontend (ReactJS)
+```bash
+cd frontend
+npm install
+npm start
+```
